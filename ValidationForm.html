@@ -1,0 +1,93 @@
+<html>
+<head>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"></style>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+<div class="container">
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN SAMPLE FORM PORTLET-->
+        <div class="portlet box red ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-plus"></i>Add Appeal Alert
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div id="appealForm" class="form-horizontal">                   
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label">Case No</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" data-required="Please enter case no" name="CaseNo" placeholder="Case No" type="text">                                        
+                                    </div>                                    
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label">Court Name</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" name="CourtName" data-required="Please enter case no"  placeholder="Court Name" type="text">
+                                    </div>                                    
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label">Case Type</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" name="CaseType" data-required="Please enter case no" placeholder="Case Type" type="text">
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label">Case Year</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" name="CaseYear" data-required="Please enter case no" placeholder="Case Year" type="text">
+                                    </div>                                   
+                                </div>
+
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label">Case Content</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" name="caseContent" data-required="Please enter case no" placeholder="Case Content" type="text">
+                                    </div>                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions right1">
+                        <button type="button" class="btn default">Cancel</button>
+                        <button type="button" id="submit" class="btn green">Submit</button>
+                    </div>                      
+                 </div>
+            </div>
+            <!-- END SAMPLE FORM PORTLET-->
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function () {
+            $("#appealForm").find('[data-required]').each(function () {              
+                if($(this).val()=="")
+                {
+                    var attr = $(this).attr('data-true');                    
+                    if (attr == undefined) {                   
+                        $($(this).parent().parent()).addClass('has-error');
+                        $('<p class="help-block">' + $(this).data('required') + '</p>').insertAfter($(this));
+                        $(this).attr('data-true',true);                    
+                    }   
+                }
+                else
+                {
+                    $($(this).parent().parent()).find('.help-block').remove();
+                    $(this).removeAttr('data-true');
+					 $($(this).parent().parent()).removeClass('has-error');
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>
